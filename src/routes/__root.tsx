@@ -76,10 +76,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "O sistema que protege o lucro do seu brechó na compra das peças." },
       { name: "author", content: "Loopii" },
       { property: "og:title", content: "Loopii — Gestão profissional para brechós" },
-      { property: "og:description", content: "Avaliação padronizada, controle de estoque e etiquetas automáticas." },
+      { property: "og:description", content: "O sistema que protege o lucro do seu brechó na compra das peças." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Loopii — Gestão profissional para brechós" },
+      { name: "twitter:description", content: "O sistema que protege o lucro do seu brechó na compra das peças." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fe217202-62bc-4c04-8269-26b6d7311fe4/id-preview-72084a6b--23c387e7-29f7-495f-a528-22a14a65b3fc.lovable.app-1779393599188.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fe217202-62bc-4c04-8269-26b6d7311fe4/id-preview-72084a6b--23c387e7-29f7-495f-a528-22a14a65b3fc.lovable.app-1779393599188.png" },
     ],
     links: [
       {
