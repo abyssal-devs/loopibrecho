@@ -4,6 +4,7 @@ import logo from "@/assets/loopii-logo.png";
 import heroImg from "@/assets/dashboard-preview.jpg";
 import labelsImg from "@/assets/labels-detail.jpg";
 import rackImg from "@/assets/rack-organized.jpg";
+import evaluationImg from "@/assets/evaluation-system.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -262,10 +263,10 @@ function StrongBenefit() {
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
-            <div className="rounded-2xl overflow-hidden border border-border">
+            <div className="rounded-2xl overflow-hidden border border-border shadow-xl">
               <img
-                src={rackImg}
-                alt="Arara organizada em loja profissional"
+                src={evaluationImg}
+                alt="Sistema de Avaliação da Loopii mostrando categorias de produtos"
                 width={1280}
                 height={1600}
                 loading="lazy"
