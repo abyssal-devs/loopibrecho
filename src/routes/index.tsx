@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import logo from "@/assets/loopii-logo.png";
-import heroImg from "@/assets/hero-operation.jpg";
+import heroImg from "@/assets/dashboard-preview.jpg";
 import labelsImg from "@/assets/labels-detail.jpg";
 import rackImg from "@/assets/rack-organized.jpg";
 
@@ -87,19 +87,19 @@ function Hero() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="relative rounded-2xl overflow-hidden ring-brand">
+            <div className="relative rounded-2xl overflow-hidden ring-1 ring-border shadow-2xl">
               <img
                 src={heroImg}
-                alt="Mesa de avaliação de peças com tablet e impressora de etiquetas"
+                alt="Dashboard Administrativo da Loopii mostrando métricas de vendas e acompanhamento operacional"
                 width={1536}
                 height={1280}
                 className="w-full h-auto object-cover"
               />
-              <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-background/85 backdrop-blur px-4 py-3 border border-border">
+              <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-background/85 backdrop-blur px-4 py-3 border border-border shadow-sm">
                 <div className="flex items-center gap-3 text-xs">
-                  <span className="h-2 w-2 rounded-full bg-[color:var(--cyan-loop)]" />
-                  <span className="font-medium">Avaliação em sistema</span>
-                  <span className="text-muted-foreground ml-auto">Padrão operacional</span>
+                  <span className="h-2 w-2 rounded-full bg-[color:var(--cyan-loop)] animate-pulse" />
+                  <span className="font-medium text-foreground">Visão geral do sistema</span>
+                  <span className="text-muted-foreground ml-auto">Gestão em tempo real</span>
                 </div>
               </div>
             </div>
