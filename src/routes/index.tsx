@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import logo from "@/assets/loopii-logo.png";
 import heroImg from "@/assets/dashboard-preview.jpg";
-import labelsImg from "@/assets/labels-detail.jpg";
+import labelsImg from "@/assets/financial-system.jpg";
 import rackImg from "@/assets/rack-organized.jpg";
 import evaluationImg from "@/assets/evaluation-system.jpg";
 
@@ -181,7 +181,7 @@ function Solution() {
             <div className="mt-10 rounded-2xl overflow-hidden border border-border">
               <img
                 src={labelsImg}
-                alt="Etiquetas e impressora para padronização de produtos"
+                alt="Sistema financeiro da Loopii mostrando contas a pagar e comparativos mensais"
                 width={1280}
                 height={1024}
                 loading="lazy"
