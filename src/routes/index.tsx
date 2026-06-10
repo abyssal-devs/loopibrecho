@@ -575,20 +575,26 @@ function Footer() {
 }
 
 function LoopiiLanding() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const togglePopup = () => setIsPopupOpen(!isPopupOpen);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Nav />
+      <Nav onCTAClick={togglePopup} />
       <main>
-        <Hero />
+        <Hero onCTAClick={togglePopup} />
         <Pain />
         <Solution />
         <Differential />
         <StrongBenefit />
         <Objection />
-        <FinalCTA />
+        <FinalCTA onCTAClick={togglePopup} />
         <FAQ />
       </main>
       <Footer />
+      <LeadPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
   );
 }
+
