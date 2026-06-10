@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import logo from "@/assets/loopii-logo.png";
 import heroImg from "@/assets/dashboard-preview.jpg";
 import labelsImg from "@/assets/financial-system.jpg";
@@ -30,7 +30,134 @@ export const Route = createFileRoute("/")({
 const CTA_PRIMARY = "QUERO PROFISSIONALIZAR MEU BRECHÓ";
 const CTA_SECONDARY = "AGENDAR DEMONSTRAÇÃO";
 
-function Nav() {
+function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    volume: "",
+    evaluation: "",
+  });
+
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleEscape);
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const message = `Olá! Tenho interesse na Loopii.
+    
+*Nome:* ${formData.name}
+*Telefone:* ${formData.phone}
+*Peças/mês:* ${formData.volume}
+*Como avalia hoje:* ${formData.evaluation}`;
+    
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/5511999999999?text=${encoded}`, "_blank");
+    onClose();
+  };
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <div 
+        className="absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity" 
+        onClick={onClose}
+      />
+      <div 
+        ref={modalRef}
+        className="relative w-full max-w-md bg-card border border-border rounded-3xl shadow-2xl overflow-hidden p-8 animate-in fade-in zoom-in duration-300"
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 text-muted-foreground hover:text-foreground transition"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+
+        <div className="mb-6">
+          <h3 className="text-2xl font-semibold tracking-tight">Fale com um especialista</h3>
+          <p className="text-muted-foreground mt-2">Preencha os dados abaixo para agendarmos sua demonstração.</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <label htmlFor="name" className="text-sm font-medium">Nome</label>
+            <input
+              required
+              id="name"
+              type="text"
+              placeholder="Seu nome"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--royal)] transition"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="phone" className="text-sm font-medium">Telefone</label>
+            <input
+              required
+              id="phone"
+              type="tel"
+              placeholder="(00) 00000-0000"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--royal)] transition"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="volume" className="text-sm font-medium">Peças que entram por mês</label>
+            <input
+              required
+              id="volume"
+              type="text"
+              placeholder="Ex: 500 peças"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--royal)] transition"
+              value={formData.volume}
+              onChange={(e) => setFormData({ ...formData, volume: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="eval" className="text-sm font-medium">Como fazem as avaliações hoje?</label>
+            <textarea
+              required
+              id="eval"
+              placeholder="Ex: No olho, planilha, caderninho..."
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--royal)] transition min-h-[80px] resize-none"
+              value={formData.evaluation}
+              onChange={(e) => setFormData({ ...formData, evaluation: e.target.value })}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-full gradient-brand text-white px-7 py-4 text-sm font-semibold tracking-wide shadow-lg shadow-[color:var(--royal)]/20 hover:opacity-95 transition mt-2"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Chamar no WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+
+function Nav({ onCTAClick }: { onCTAClick: () => void }) {
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-background/80 border-b border-border/60">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
@@ -43,18 +170,18 @@ function Nav() {
           <a href="#diferencial" className="hover:text-foreground transition">Diferencial</a>
           <a href="#faq" className="hover:text-foreground transition">FAQ</a>
         </nav>
-        <a
-          href="#cta"
+        <button
+          onClick={onCTAClick}
           className="hidden sm:inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 py-2 text-sm font-medium hover:opacity-90 transition"
         >
           Agendar demo
-        </a>
+        </button>
       </div>
     </header>
   );
 }
 
-function Hero() {
+function Hero({ onCTAClick }: { onCTAClick: () => void }) {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-40 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
@@ -72,12 +199,12 @@ function Hero() {
               Pare de depender do "feeling" da equipe para avaliar produtos. A Loopii profissionaliza a operação do seu brechó com avaliação padronizada, controle de estoque, etiquetas automáticas e tecnologia focada no ponto mais importante da operação: a compra.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a
-                href="#cta"
+              <button
+                onClick={onCTAClick}
                 className="inline-flex items-center justify-center rounded-full gradient-brand text-white px-7 py-4 text-sm font-semibold tracking-wide shadow-lg shadow-[color:var(--royal)]/20 hover:opacity-95 transition"
               >
                 {CTA_PRIMARY}
-              </a>
+              </button>
               <a
                 href="#solucao"
                 className="inline-flex items-center justify-center rounded-full border border-border bg-card px-7 py-4 text-sm font-semibold text-foreground hover:bg-muted transition"
@@ -110,6 +237,7 @@ function Hero() {
     </section>
   );
 }
+
 
 function Pain() {
   const items = [
@@ -315,7 +443,7 @@ function Objection() {
   );
 }
 
-function FinalCTA() {
+function FinalCTA({ onCTAClick }: { onCTAClick: () => void }) {
   return (
     <section id="cta" className="relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
@@ -328,18 +456,19 @@ function FinalCTA() {
             <p className="mt-6 text-lg text-muted-foreground text-pretty">
               Profissionalize sua operação com um sistema pensado para quem quer escalar no mercado second hand.
             </p>
-            <a
-              href="#"
+            <button
+              onClick={onCTAClick}
               className="mt-10 inline-flex items-center justify-center rounded-full gradient-brand text-white px-8 py-5 text-sm font-semibold tracking-wide shadow-lg shadow-[color:var(--royal)]/20 hover:opacity-95 transition"
             >
               {CTA_SECONDARY}
-            </a>
+            </button>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 const FAQS: { q: string; a: string }[] = [
   {
@@ -446,20 +575,26 @@ function Footer() {
 }
 
 function LoopiiLanding() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const togglePopup = () => setIsPopupOpen(!isPopupOpen);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Nav />
+      <Nav onCTAClick={togglePopup} />
       <main>
-        <Hero />
+        <Hero onCTAClick={togglePopup} />
         <Pain />
         <Solution />
         <Differential />
         <StrongBenefit />
         <Objection />
-        <FinalCTA />
+        <FinalCTA onCTAClick={togglePopup} />
         <FAQ />
       </main>
       <Footer />
+      <LeadPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
   );
 }
+
