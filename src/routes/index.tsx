@@ -505,6 +505,7 @@ function StrongBenefit() {
           <div className="lg:col-span-6">
             <Reveal>
               <div className="mockup-frame">
+                <div className="mockup-chrome"><span /><span /><span /></div>
                 <div className="mockup-screen">
                   <img
                     src={evaluationImg}
