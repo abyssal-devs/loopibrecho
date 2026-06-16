@@ -546,19 +546,6 @@ function StrongBenefit() {
           </div>
         </div>
 
-        {/* Imagem complementar de credibilidade — operação real */}
-        <Reveal delay={120}>
-          <div className="mt-24 rounded-2xl overflow-hidden border border-[color:var(--border)]">
-            <img
-              src={rackImg}
-              alt="Operação organizada em loja profissional"
-              width={1920}
-              height={900}
-              loading="lazy"
-              className="w-full h-[280px] md:h-[420px] object-cover"
-            />
-          </div>
-        </Reveal>
       </div>
     </section>
   );
