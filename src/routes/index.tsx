@@ -636,53 +636,69 @@ function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" className="border-t border-[color:var(--border)] bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-28 md:py-36">
-        <div className="grid md:grid-cols-3 gap-16">
-          <div className="md:col-span-1">
-            <Reveal>
-              <span className="text-xs uppercase tracking-[0.25em] text-[color:var(--royal)]">FAQ</span>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 className="mt-5 text-3xl md:text-4xl font-semibold tracking-tight text-balance leading-[1.1]">
-                Perguntas frequentes
-              </h2>
-            </Reveal>
-          </div>
-          <div className="md:col-span-2">
-            {FAQS.map((f, i) => {
-              const isOpen = open === i;
-              return (
-                <Reveal key={i} delay={i * 40}>
-                  <div className="border-b border-[color:var(--border)]">
-                    <button
-                      onClick={() => setOpen(isOpen ? null : i)}
-                      className="w-full flex items-center justify-between gap-6 py-6 text-left transition-colors duration-200 hover:text-[color:var(--royal)]"
+      <div className="mx-auto max-w-4xl px-6 py-28 md:py-36">
+        <div className="text-center mb-16 md:mb-20">
+          <Reveal>
+            <span className="text-xs uppercase tracking-[0.25em] text-[color:var(--royal)]">FAQ</span>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-balance leading-[1.05]">
+              Perguntas frequentes
+            </h2>
+          </Reveal>
+        </div>
+
+        <div className="space-y-3">
+          {FAQS.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <Reveal key={i} delay={i * 30}>
+                <div
+                  data-open={isOpen}
+                  className="faq-item rounded-2xl border border-[color:var(--border)] bg-white transition-all duration-500 hover:border-[color:var(--ink)]/30"
+                >
+                  <button
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="w-full flex items-center justify-between gap-6 px-6 md:px-8 py-6 text-left"
+                  >
+                    <span className="text-base md:text-lg font-medium text-pretty tracking-tight">
+                      {f.q}
+                    </span>
+                    <span
+                      className={`relative h-9 w-9 shrink-0 rounded-full border border-[color:var(--border)] flex items-center justify-center transition-all duration-500 ${
+                        isOpen ? "bg-[color:var(--ink)] border-[color:var(--ink)]" : "bg-white"
+                      }`}
+                      aria-hidden
                     >
-                      <span className="text-base md:text-lg font-medium text-pretty">
-                        {f.q}
-                      </span>
                       <span
-                        className={`h-9 w-9 shrink-0 rounded-full border border-[color:var(--border)] flex items-center justify-center text-lg transition-all duration-300 ${
-                          isOpen ? "bg-[color:var(--ink)] text-white rotate-45 border-[color:var(--ink)]" : ""
+                        className={`absolute h-px w-3.5 transition-colors duration-300 ${
+                          isOpen ? "bg-white" : "bg-[color:var(--ink)]"
                         }`}
-                        aria-hidden
-                      >
-                        +
-                      </span>
-                    </button>
-                    <div
-                      className="grid transition-all duration-300 ease-out"
-                      style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
-                    >
-                      <div className="overflow-hidden">
-                        <p className="pb-6 pr-14 text-muted-foreground text-pretty leading-relaxed">{f.a}</p>
-                      </div>
+                      />
+                      <span
+                        className={`absolute h-3.5 w-px transition-all duration-500 ${
+                          isOpen ? "bg-white rotate-90 scale-0" : "bg-[color:var(--ink)]"
+                        }`}
+                      />
+                    </span>
+                  </button>
+                  <div
+                    className="grid transition-[grid-template-rows,opacity] duration-500 ease-out"
+                    style={{
+                      gridTemplateRows: isOpen ? "1fr" : "0fr",
+                      opacity: isOpen ? 1 : 0,
+                    }}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="px-6 md:px-8 pb-7 pr-14 text-muted-foreground text-pretty leading-relaxed">
+                        {f.a}
+                      </p>
                     </div>
                   </div>
-                </Reveal>
-              );
-            })}
-          </div>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
