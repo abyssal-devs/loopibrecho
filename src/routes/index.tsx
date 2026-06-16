@@ -399,6 +399,7 @@ function Solution() {
             </Reveal>
             <Reveal delay={240}>
               <div className="mt-12 mockup-frame">
+                <div className="mockup-chrome"><span /><span /><span /></div>
                 <div className="mockup-screen">
                   <img
                     src={labelsImg}
