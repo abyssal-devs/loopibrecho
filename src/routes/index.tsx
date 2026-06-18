@@ -244,65 +244,73 @@ function Nav({ onCTAClick }: { onCTAClick: () => void }) {
 
 function Hero({ onCTAClick }: { onCTAClick: () => void }) {
   return (
-    <section id="top" className="relative overflow-hidden hero-backdrop">
-      <div className="absolute inset-0 hero-grid pointer-events-none" />
-      <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-20 md:pt-28 md:pb-28 text-center">
-        <Reveal>
-          <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white/80 backdrop-blur px-3.5 py-1.5 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--royal)]" />
-            Plataforma operacional para brechós
+    <section id="top" className="relative overflow-hidden bg-white">
+      <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-16 lg:pt-24 lg:pb-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Coluna Esquerda */}
+          <div className="max-w-xl">
+            <Reveal>
+              <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--royal)]" />
+                Plataforma operacional para brechós
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.6rem] font-semibold tracking-tight text-balance leading-[1.05] text-[color:var(--ink)]">
+                O sistema que <span className="text-gradient-brand">protege o lucro</span> do seu brechó na compra das peças.
+              </h1>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="mt-6 text-lg text-muted-foreground text-pretty leading-relaxed">
+                Pare de depender do "feeling" da equipe para avaliar produtos. A Loopii profissionaliza a operação do seu brechó com avaliação padronizada, controle de estoque, etiquetas automáticas e tecnologia focada no ponto mais importante da operação: a compra.
+              </p>
+            </Reveal>
+            <Reveal delay={240}>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <PrimaryButton onClick={onCTAClick}>{CTA_PRIMARY}</PrimaryButton>
+                <GhostButton href="#solucao">Ver como funciona</GhostButton>
+              </div>
+            </Reveal>
+            <Reveal delay={320}>
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--cyan-loop)]" />
+                  Sistema em operação real
+                </div>
+                <span className="opacity-30 hidden sm:inline">•</span>
+                <div className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--royal)]" />
+                  Feito para brechós
+                </div>
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
-        <Reveal delay={80}>
-          <h1 className="mx-auto mt-7 max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-semibold tracking-tight text-balance leading-[1.03] text-[color:var(--ink)]">
-            O sistema que <span className="text-gradient-brand">protege o lucro</span> do seu brechó na compra das peças.
-          </h1>
-        </Reveal>
-        <Reveal delay={160}>
-          <p className="mx-auto mt-7 max-w-2xl text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
-            Pare de depender do "feeling" da equipe para avaliar produtos. A Loopii profissionaliza a operação do seu brechó com avaliação padronizada, controle de estoque, etiquetas automáticas e tecnologia focada no ponto mais importante da operação: a compra.
-          </p>
-        </Reveal>
-        <Reveal delay={240}>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-            <PrimaryButton onClick={onCTAClick}>{CTA_PRIMARY}</PrimaryButton>
-            <GhostButton href="#solucao">Ver como funciona</GhostButton>
-          </div>
-        </Reveal>
-        <Reveal delay={320}>
-          <div className="mt-8 flex items-center justify-center gap-6 text-xs text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--cyan-loop)]" />
-              Sistema em operação real
-            </div>
-            <span className="opacity-30">•</span>
-            <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--royal)]" />
-              Feito para brechós
-            </div>
-          </div>
-        </Reveal>
 
-        <Reveal delay={400}>
-          <div className="relative mt-20 mx-auto max-w-5xl mockup-float">
-            <div className="absolute -inset-x-10 -inset-y-6 bg-gradient-to-b from-transparent via-white/40 to-white -z-10 blur-2xl" />
-            <div className="mockup-frame">
-              <div className="mockup-chrome">
-                <span /><span /><span />
-                <div className="ml-3 flex-1 h-5 rounded-md bg-white/70 border border-[color:var(--border)]" />
+          {/* Coluna Direita */}
+          <div className="relative flex justify-center lg:justify-end">
+            <Reveal delay={200}>
+              <div className="relative w-full max-w-[620px] lg:max-w-[680px] mockup-float">
+                <div className="absolute -top-8 -right-8 w-48 h-48 rounded-full bg-[color:var(--cyan-loop)] opacity-[0.06] blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-10 -left-10 w-56 h-56 rounded-full bg-[color:var(--royal)] opacity-[0.05] blur-3xl pointer-events-none" />
+                <div className="mockup-frame">
+                  <div className="mockup-chrome">
+                    <span /><span /><span />
+                    <div className="ml-3 flex-1 h-5 rounded-md bg-white/70 border border-[color:var(--border)]" />
+                  </div>
+                  <div className="mockup-screen">
+                    <img
+                      src={heroImg}
+                      alt="Dashboard Administrativo da Loopii mostrando métricas e acompanhamento operacional"
+                      width={1536}
+                      height={1280}
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="mockup-screen">
-                <img
-                  src={heroImg}
-                  alt="Dashboard Administrativo da Loopii mostrando métricas de vendas e acompanhamento operacional"
-                  width={1536}
-                  height={1280}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            </div>
+            </Reveal>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
