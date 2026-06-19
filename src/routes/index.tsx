@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
 import logo from "@/assets/loopii-logo.png";
 import heroImg from "@/assets/dashboard-preview.jpg";
+import heroBg from "@/assets/hero-bg.png";
 import labelsImg from "@/assets/financial-system.jpg";
 
 import evaluationImg from "@/assets/evaluation-system.jpg";
@@ -244,7 +245,17 @@ function Nav({ onCTAClick }: { onCTAClick: () => void }) {
 
 function Hero({ onCTAClick }: { onCTAClick: () => void }) {
   return (
-    <section id="top" className="relative overflow-hidden bg-white">
+    <section
+      id="top"
+      className="relative overflow-hidden bg-white"
+      style={{
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="absolute inset-0 bg-white/75 backdrop-blur-[2px] pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-16 lg:pt-24 lg:pb-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Coluna Esquerda */}
