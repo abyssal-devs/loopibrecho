@@ -404,6 +404,150 @@ function Pain() {
 
 /* -------------------------------- Solution ------------------------------- */
 
+function FeatureDashboard({ active }: { active: number }) {
+  const royal = "var(--royal)";
+  const cyan = "var(--cyan-loop)";
+  const ink = "var(--ink)";
+
+  const Frame = ({ children, label }: { children: React.ReactNode; label: string }) => (
+    <svg viewBox="0 0 400 300" className="w-full h-auto block" role="img" aria-label={label}>
+      <rect x="0" y="0" width="400" height="300" fill="#fafafa" />
+      <rect x="0" y="0" width="400" height="34" fill="#f1f1f1" />
+      <circle cx="14" cy="17" r="4" fill="#e2e2e2" />
+      <circle cx="28" cy="17" r="4" fill="#e2e2e2" />
+      <circle cx="42" cy="17" r="4" fill="#e2e2e2" />
+      <rect x="16" y="48" width="80" height="220" rx="6" fill="#ffffff" stroke="#eee" />
+      <rect x="26" y="62" width="60" height="6" rx="3" fill={royal} opacity="0.9" />
+      <rect x="26" y="78" width="46" height="4" rx="2" fill="#e5e7eb" />
+      <rect x="26" y="90" width="52" height="4" rx="2" fill="#e5e7eb" />
+      <rect x="26" y="102" width="40" height="4" rx="2" fill="#e5e7eb" />
+      {children}
+    </svg>
+  );
+
+  const scenes: React.ReactNode[] = [
+    <Frame key={0} label="Avaliações padronizadas">
+      {[0, 1, 2].map((i) => (
+        <g key={i}>
+          <rect x={110 + i * 95} y="60" width="80" height="200" rx="8" fill="#fff" stroke="#eee" />
+          <rect x={120 + i * 95} y="74" width="60" height="46" rx="4" fill={cyan} opacity="0.18" />
+          {[0, 1, 2, 3, 4].map((s) => (
+            <circle key={s} cx={128 + i * 95 + s * 11} cy="142" r="4"
+              fill={royal}
+              style={{ animation: `dash-pop 1.6s ${s * 0.1 + i * 0.25}s ease-out infinite` }} />
+          ))}
+          <rect x={120 + i * 95} y="170" width="60" height="6" rx="3" fill="#e5e7eb" />
+          <rect x={120 + i * 95} y="184" width="40" height="6" rx="3" fill="#e5e7eb" />
+        </g>
+      ))}
+    </Frame>,
+
+    <Frame key={1} label="Preços consistentes">
+      <rect x="110" y="60" width="270" height="200" rx="10" fill="#fff" stroke="#eee" />
+      {[0, 1, 2, 3].map((i) => (
+        <g key={i}>
+          <rect x="124" y={78 + i * 42} width="100" height="28" rx="6" fill="#f3f4f6" />
+          <rect x="240" y={78 + i * 42} width="120" height="28" rx="6" fill={royal} opacity="0.08" />
+          <text x="250" y={97 + i * 42} fontFamily="ui-monospace,monospace" fontSize="14" fill={ink}
+                style={{ animation: `dash-price 2s ${i * 0.2}s ease-in-out infinite` }}>
+            R$ {(49 + i * 10).toFixed(2)}
+          </text>
+          <circle cx="350" cy={92 + i * 42} r="5" fill={cyan}
+                  style={{ animation: `dash-pop 2s ${i * 0.2}s ease-out infinite` }} />
+        </g>
+      ))}
+    </Frame>,
+
+    <Frame key={2} label="Estoque organizado">
+      {[0, 1, 2, 3, 4, 5].map((i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        return (
+          <g key={i} style={{ animation: `dash-stack 2.4s ${i * 0.18}s ease-out infinite` }}>
+            <rect x={130 + col * 78} y={90 + row * 80} width="68" height="68" rx="6" fill={royal} opacity="0.12" stroke={royal} strokeOpacity="0.4" />
+            <rect x={130 + col * 78} y={90 + row * 80} width="68" height="14" fill={royal} opacity="0.25" />
+          </g>
+        );
+      })}
+    </Frame>,
+
+    <Frame key={3} label="Etiquetas automáticas">
+      <rect x="140" y="70" width="220" height="60" rx="8" fill={ink} />
+      <rect x="156" y="86" width="188" height="28" rx="4" fill="#2a2a2a" />
+      <circle cx="340" cy="100" r="4" fill={cyan} style={{ animation: `dash-blink 1s infinite` }} />
+      {[0, 1, 2].map((i) => (
+        <g key={i} style={{ animation: `dash-slide 2.4s ${i * 0.4}s ease-in-out infinite` }}>
+          <rect x="170" y={140 + i * 40} width="160" height="32" rx="4" fill="#fff" stroke={royal} strokeOpacity="0.4" />
+          <rect x="180" y={150 + i * 40} width="60" height="6" rx="3" fill={ink} />
+          <rect x="180" y={160 + i * 40} width="90" height="4" rx="2" fill="#bbb" />
+          {[0, 1, 2, 3, 4, 5, 6, 7].map((b) => (
+            <rect key={b} x={290 + b * 4} y={148 + i * 40} width="2" height="18" fill={ink} />
+          ))}
+        </g>
+      ))}
+    </Frame>,
+
+    <Frame key={4} label="Compras e vendas">
+      <line x1="120" y1="240" x2="380" y2="240" stroke="#e5e7eb" />
+      {[0, 1, 2, 3, 4, 5].map((i) => (
+        <g key={i}>
+          <rect x={132 + i * 40} y="240" width="14" height="0" fill={royal}
+                style={{ animation: `dash-bar1 2.2s ${i * 0.12}s ease-out infinite`, transformOrigin: `${139 + i * 40}px 240px` }} />
+          <rect x={150 + i * 40} y="240" width="14" height="0" fill={cyan}
+                style={{ animation: `dash-bar2 2.2s ${i * 0.12 + 0.1}s ease-out infinite`, transformOrigin: `${157 + i * 40}px 240px` }} />
+        </g>
+      ))}
+      <rect x="120" y="60" width="60" height="6" rx="3" fill={royal} opacity="0.8" />
+      <rect x="120" y="74" width="100" height="4" rx="2" fill="#e5e7eb" />
+    </Frame>,
+
+    <Frame key={5} label="Equipe alinhada">
+      {[0, 1, 2, 3].map((i) => (
+        <g key={i} style={{ animation: `dash-pop 2s ${i * 0.2}s ease-out infinite` }}>
+          <circle cx={150 + i * 60} cy="140" r="22" fill={royal} opacity="0.15" stroke={royal} strokeOpacity="0.6" />
+          <circle cx={150 + i * 60} cy="132" r="8" fill={royal} opacity="0.8" />
+          <path d={`M ${134 + i * 60} 156 Q ${150 + i * 60} 142 ${166 + i * 60} 156`} fill={royal} opacity="0.8" />
+          <rect x={132 + i * 60} y="180" width="36" height="6" rx="3" fill="#e5e7eb" />
+        </g>
+      ))}
+    </Frame>,
+
+    <Frame key={6} label="Precificação segura">
+      <path d="M 245 80 L 305 105 L 305 165 Q 305 215 245 240 Q 185 215 185 165 L 185 105 Z"
+            fill={royal} opacity="0.12" stroke={royal} strokeWidth="2" />
+      <path d="M 215 160 L 240 185 L 285 135" fill="none" stroke={royal} strokeWidth="5"
+            strokeLinecap="round" strokeLinejoin="round"
+            strokeDasharray="120" strokeDashoffset="120"
+            style={{ animation: `dash-draw 2s ease-out infinite` }} />
+    </Frame>,
+
+    <Frame key={7} label="Pix ou crédito">
+      <g style={{ transformOrigin: "185px 135px", animation: `dash-swap 3s ease-in-out infinite` }}>
+        <rect x="130" y="100" width="110" height="70" rx="10" fill={royal} />
+        <text x="232" y="142" fontFamily="ui-sans-serif" fontSize="16" fontWeight="700" fill="#fff" textAnchor="end">PIX</text>
+      </g>
+      <g style={{ transformOrigin: "315px 165px", animation: `dash-swap2 3s ease-in-out infinite` }}>
+        <rect x="260" y="130" width="110" height="70" rx="10" fill={ink} />
+        <rect x="272" y="148" width="86" height="10" rx="2" fill={cyan} opacity="0.7" />
+        <text x="358" y="192" fontFamily="ui-sans-serif" fontSize="11" fontWeight="700" fill="#fff" textAnchor="end">CRÉDITO</text>
+      </g>
+    </Frame>,
+  ];
+
+  return (
+    <div className="relative w-full">
+      {scenes.map((s, i) => (
+        <div
+          key={i}
+          className={`transition-opacity duration-500 ${i === active ? "opacity-100 relative" : "opacity-0 absolute inset-0 pointer-events-none"}`}
+        >
+          {s}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function Solution() {
   const features = [
     "Padroniza avaliações de peças",
@@ -415,6 +559,8 @@ function Solution() {
     "Ganha mais segurança na precificação",
     "Escolhe entre pagamento em Pix ou crédito em compras na loja",
   ];
+
+  const [active, setActive] = useState(0);
 
   return (
     <section id="solucao" className="relative bg-white">
@@ -437,17 +583,13 @@ function Solution() {
             <Reveal delay={240}>
               <div className="mt-12 mockup-frame">
                 <div className="mockup-chrome"><span /><span /><span /></div>
-                <div className="mockup-screen">
-                  <img
-                    src={labelsImg}
-                    alt="Sistema financeiro da Loopii mostrando contas a pagar e comparativos mensais"
-                    width={1280}
-                    height={1024}
-                    loading="lazy"
-                    className="w-full h-auto object-cover"
-                  />
+                <div className="mockup-screen bg-white">
+                  <FeatureDashboard active={active} />
                 </div>
               </div>
+              <p className="mt-3 text-xs text-muted-foreground text-center lg:text-left">
+                Passe o mouse sobre cada item para ver a função em ação.
+              </p>
             </Reveal>
           </div>
 
@@ -458,8 +600,13 @@ function Solution() {
             <ul>
               {features.map((f, i) => (
                 <Reveal as="li" key={i} delay={i * 50}>
-                  <div className="flex items-start gap-6 py-6 border-b border-[color:var(--border)] group transition-colors duration-300 hover:bg-[color:var(--surface)]/60 -mx-4 px-4 rounded-lg">
-                    <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[color:var(--royal)] text-white text-xs font-bold">
+                  <div
+                    onMouseEnter={() => setActive(i)}
+                    onFocus={() => setActive(i)}
+                    tabIndex={0}
+                    className={`flex items-start gap-6 py-6 border-b border-[color:var(--border)] group transition-colors duration-300 hover:bg-[color:var(--surface)]/60 -mx-4 px-4 rounded-lg cursor-pointer outline-none ${active === i ? "bg-[color:var(--surface)]/60" : ""}`}
+                  >
+                    <span className={`mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[color:var(--royal)] text-white text-xs font-bold transition-transform ${active === i ? "scale-110" : ""}`}>
                       ✓
                     </span>
                     <p className="text-lg md:text-xl text-foreground font-medium tracking-tight leading-snug">{f}</p>
