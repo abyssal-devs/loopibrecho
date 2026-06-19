@@ -4,6 +4,7 @@ import logo from "@/assets/loopii-logo.png";
 import heroImg from "@/assets/dashboard-preview.jpg";
 import heroBg from "@/assets/hero-bg.png";
 import { AnimatedText } from "@/components/ui/animated-underline-text-one";
+import { Users, ShoppingBag, Boxes, TrendingDown, Gauge } from "lucide-react";
 import labelsImg from "@/assets/financial-system.jpg";
 
 import evaluationImg from "@/assets/evaluation-system.jpg";
@@ -331,12 +332,12 @@ function Hero({ onCTAClick }: { onCTAClick: () => void }) {
 /* ---------------------------------- Pain --------------------------------- */
 
 function Pain() {
-  const items = [
-    "cada funcionária avalia de um jeito",
-    "a compra das peças acontece no improviso",
-    "o estoque fica desorganizado",
-    "a margem diminui sem perceber",
-    "falta controle real da operação",
+  const items: { text: string; Icon: typeof Users; anim: string }[] = [
+    { text: "cada funcionária avalia de um jeito", Icon: Users, anim: "icon-sway" },
+    { text: "a compra das peças acontece no improviso", Icon: ShoppingBag, anim: "icon-shake" },
+    { text: "o estoque fica desorganizado", Icon: Boxes, anim: "animate-[spin_10s_linear_infinite]" },
+    { text: "a margem diminui sem perceber", Icon: TrendingDown, anim: "icon-drop" },
+    { text: "falta controle real da operação", Icon: Gauge, anim: "icon-tick" },
   ];
   return (
     <section id="problema" className="bg-[color:var(--ink)] text-white">
@@ -358,11 +359,16 @@ function Pain() {
         </div>
 
         <ul className="mt-16 grid md:grid-cols-2 lg:grid-cols-5 gap-5">
-          {items.map((t, i) => (
+          {items.map(({ text, Icon, anim }, i) => (
             <Reveal as="li" key={i} delay={i * 80}>
-              <div className="h-full rounded-2xl bg-white/[0.04] border border-white/10 p-7 flex flex-col gap-5 transition-colors duration-300 hover:bg-white/[0.07]">
-                <span className="text-xs text-white/40 font-mono">0{i + 1}</span>
-                <p className="text-base text-white/90 text-pretty leading-relaxed">{t}</p>
+              <div className="group h-full rounded-2xl bg-white/[0.04] border border-white/10 p-7 flex flex-col gap-5 transition-colors duration-300 hover:bg-white/[0.07]">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-white/40 font-mono">0{i + 1}</span>
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[color:var(--cyan-loop)]/10 text-[color:var(--cyan-loop)] border border-[color:var(--cyan-loop)]/20">
+                    <Icon className={`h-5 w-5 ${anim}`} strokeWidth={1.75} />
+                  </span>
+                </div>
+                <p className="text-base text-white/90 text-pretty leading-relaxed">{text}</p>
               </div>
             </Reveal>
           ))}
