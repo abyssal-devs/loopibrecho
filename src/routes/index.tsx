@@ -304,7 +304,7 @@ function Hero({ onCTAClick }: { onCTAClick: () => void }) {
           {/* Coluna Direita */}
           <div className="relative flex justify-center lg:justify-end">
             <Reveal delay={200}>
-              <div className="relative w-full max-w-[760px] lg:max-w-[860px] xl:max-w-[940px] mockup-float">
+              <div className="relative w-full max-w-[920px] lg:max-w-[1040px] xl:max-w-[1130px] mockup-float">
                 <div className="absolute -top-8 -right-8 w-48 h-48 rounded-full bg-[color:var(--cyan-loop)] opacity-[0.06] blur-3xl pointer-events-none" />
                 <div className="absolute -bottom-10 -left-10 w-56 h-56 rounded-full bg-[color:var(--royal)] opacity-[0.05] blur-3xl pointer-events-none" />
                 <div className="mockup-frame">
