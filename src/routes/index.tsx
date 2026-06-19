@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import logo from "@/assets/loopii-logo.png";
 import heroImg from "@/assets/dashboard-preview.jpg";
 import heroBg from "@/assets/hero-bg.png";
+import painBg from "@/assets/pain-bg.png";
 import { AnimatedText } from "@/components/ui/animated-underline-text-one";
 import { Users, ShoppingBag, Boxes, TrendingDown, Gauge } from "lucide-react";
 import labelsImg from "@/assets/financial-system.jpg";
@@ -340,8 +341,18 @@ function Pain() {
     { text: "falta controle real da operação", Icon: Gauge, anim: "icon-tick" },
   ];
   return (
-    <section id="problema" className="bg-[color:var(--ink)] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-28 md:py-36">
+    <section
+      id="problema"
+      className="relative bg-[color:var(--ink)] text-white"
+      style={{
+        backgroundImage: `url(${painBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="absolute inset-0 bg-[color:var(--ink)]/80 pointer-events-none" />
+      <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-36">
         <div className="max-w-3xl">
           <Reveal>
             <span className="text-xs uppercase tracking-[0.25em] text-[color:var(--cyan-loop)]">A dor real</span>
