@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import logo from "@/assets/loopii-logo.png";
 import heroImg from "@/assets/dashboard-preview.jpg";
 import heroBg from "@/assets/hero-bg.png";
+import { AnimatedText } from "@/components/ui/animated-underline-text-one";
 import labelsImg from "@/assets/financial-system.jpg";
 
 import evaluationImg from "@/assets/evaluation-system.jpg";
