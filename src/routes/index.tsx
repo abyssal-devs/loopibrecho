@@ -261,7 +261,7 @@ function Hero({ onCTAClick }: { onCTAClick: () => void }) {
     >
       <div className="absolute inset-0 bg-white/80 pointer-events-none md:hidden" />
       <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-16 lg:pt-24 lg:pb-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[1fr_1.6fr] gap-12 lg:gap-16 items-center">
           {/* Coluna Esquerda */}
           <div className="max-w-xl">
             <Reveal>
@@ -304,7 +304,7 @@ function Hero({ onCTAClick }: { onCTAClick: () => void }) {
           {/* Coluna Direita */}
           <div className="relative flex justify-center lg:justify-end">
             <Reveal delay={200}>
-              <div className="relative w-full max-w-[920px] lg:max-w-[1040px] xl:max-w-[1130px] mockup-float">
+              <div className="relative w-full max-w-none mockup-float">
                 <div className="absolute -top-8 -right-8 w-48 h-48 rounded-full bg-[color:var(--cyan-loop)] opacity-[0.06] blur-3xl pointer-events-none" />
                 <div className="absolute -bottom-10 -left-10 w-56 h-56 rounded-full bg-[color:var(--royal)] opacity-[0.05] blur-3xl pointer-events-none" />
                 <div className="mockup-frame">
