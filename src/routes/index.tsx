@@ -252,7 +252,7 @@ function Hero({ onCTAClick }: { onCTAClick: () => void }) {
       style={{
         backgroundImage: `url(${heroBg})`,
         backgroundSize: "cover",
-        backgroundPosition: "center bottom",
+        backgroundPosition: "center top",
         backgroundRepeat: "no-repeat",
       }}
     >
