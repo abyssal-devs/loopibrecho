@@ -351,7 +351,7 @@ function Pain() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      
+      <div className="absolute inset-0 bg-[color:var(--ink)]/80 pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-36">
         <div className="max-w-3xl">
           <Reveal>
