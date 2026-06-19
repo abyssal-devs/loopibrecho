@@ -428,14 +428,14 @@ function FeatureDashboard({ active }: { active: number }) {
   ];
 
   return (
-    <div className="relative w-full aspect-[4/3] bg-[#fafafa] overflow-hidden">
+    <div className="relative w-full aspect-[16/10] bg-[#fafafa] overflow-hidden">
       {scenes.map((s, i) => (
         <img
           key={i}
           src={s.src}
           alt={s.alt}
           loading="lazy"
-          className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${i === active ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+          className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === active ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         />
       ))}
     </div>
