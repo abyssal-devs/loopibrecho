@@ -268,7 +268,7 @@ function Hero({ onCTAClick }: { onCTAClick: () => void }) {
             </Reveal>
             <Reveal delay={80}>
               <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.6rem] font-semibold tracking-tight text-balance leading-[1.05] text-[color:var(--ink)]">
-                O sistema que <span className="text-gradient-brand">protege o lucro</span> do seu brechó na compra das peças.
+                O sistema que <AnimatedText text="protege o lucro" textClassName="text-gradient-brand" underlineClassName="text-[color:var(--cyan-loop)]" /> do seu brechó na compra das peças.
               </h1>
             </Reveal>
             <Reveal delay={160}>
