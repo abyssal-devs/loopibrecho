@@ -256,7 +256,7 @@ function Hero({ onCTAClick }: { onCTAClick: () => void }) {
         backgroundRepeat: "no-repeat",
       }}
     >
-      
+      <div className="absolute inset-0 bg-white/60 pointer-events-none md:hidden" />
       <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-16 lg:pt-24 lg:pb-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Coluna Esquerda */}
