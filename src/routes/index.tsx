@@ -332,7 +332,6 @@ function Hero({ onCTAClick }: { onCTAClick: () => void }) {
 /* ---------------------------------- Pain --------------------------------- */
 
 function Pain() {
-  const items = [
   const items: { text: string; Icon: typeof Users; anim: string }[] = [
     { text: "cada funcionária avalia de um jeito", Icon: Users, anim: "icon-sway" },
     { text: "a compra das peças acontece no improviso", Icon: ShoppingBag, anim: "icon-shake" },
