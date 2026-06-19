@@ -347,7 +347,7 @@ function Pain() {
   return (
     <section
       id="problema"
-      className="relative bg-[color:var(--ink)] text-white"
+      className="relative bg-white text-[color:var(--ink)]"
       style={{
         backgroundImage: `url(${painBg})`,
         backgroundSize: "cover",
@@ -355,19 +355,19 @@ function Pain() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="absolute inset-0 bg-[color:var(--ink)]/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-white/85 pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-36">
         <div className="max-w-3xl">
           <Reveal>
-            <span className="text-xs uppercase tracking-[0.25em] text-[color:var(--cyan-loop)]">A dor real</span>
+            <span className="text-xs uppercase tracking-[0.25em] text-[color:var(--royal)]">A dor real</span>
           </Reveal>
           <Reveal delay={80}>
-            <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-balance leading-[1.1]">
+            <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-balance leading-[1.1] text-[color:var(--ink)]">
               Seu brechó cresce… mas a desorganização cresce junto?
             </h2>
           </Reveal>
           <Reveal delay={160}>
-            <p className="mt-7 text-lg text-white/70">
+            <p className="mt-7 text-lg text-muted-foreground">
               Muitos brechós ainda perdem dinheiro porque:
             </p>
           </Reveal>
@@ -376,14 +376,14 @@ function Pain() {
         <ul className="mt-16 grid md:grid-cols-2 lg:grid-cols-5 gap-5">
           {items.map(({ text, Icon, anim }, i) => (
             <Reveal as="li" key={i} delay={i * 80}>
-              <div className="group h-full rounded-2xl bg-white/[0.04] border border-white/10 p-7 flex flex-col gap-5 transition-colors duration-300 hover:bg-white/[0.07]">
+              <div className="group h-full rounded-2xl bg-white border border-[color:var(--border)] shadow-sm p-7 flex flex-col gap-5 transition-colors duration-300 hover:border-[color:var(--royal)]/40 hover:shadow-md">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-white/40 font-mono">0{i + 1}</span>
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[color:var(--cyan-loop)]/10 text-[color:var(--cyan-loop)] border border-[color:var(--cyan-loop)]/20">
+                  <span className="text-xs text-muted-foreground font-mono">0{i + 1}</span>
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[color:var(--royal)]/10 text-[color:var(--royal)] border border-[color:var(--royal)]/20">
                     <Icon className={`h-5 w-5 ${anim}`} strokeWidth={1.75} />
                   </span>
                 </div>
-                <p className="text-base text-white/90 text-pretty leading-relaxed">{text}</p>
+                <p className="text-base text-[color:var(--ink)] text-pretty leading-relaxed">{text}</p>
               </div>
             </Reveal>
           ))}
@@ -391,12 +391,12 @@ function Pain() {
 
         <div className="mt-20 grid md:grid-cols-5 gap-10 items-center">
           <Reveal className="md:col-span-3">
-            <p className="text-2xl md:text-3xl font-medium tracking-tight text-balance leading-snug">
-              E o problema é simples: <span className="text-[color:var(--cyan-loop)]">o lucro do brechó começa na compra.</span>
+            <p className="text-2xl md:text-3xl font-medium tracking-tight text-balance leading-snug text-[color:var(--ink)]">
+              E o problema é simples: <span className="text-[color:var(--royal)]">o lucro do brechó começa na compra.</span>
             </p>
           </Reveal>
           <Reveal className="md:col-span-2" delay={120}>
-            <p className="text-white/60 text-pretty text-lg">
+            <p className="text-muted-foreground text-pretty text-lg">
               Quando a entrada das peças não tem critério, padrão e controle, a operação perde qualidade e você perde lucro.
             </p>
           </Reveal>
