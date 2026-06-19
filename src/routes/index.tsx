@@ -432,9 +432,13 @@ function FeatureDashboard({ active }: { active: number }) {
           <rect x={110 + i * 95} y="60" width="80" height="200" rx="8" fill="#fff" stroke="#eee" />
           <rect x={120 + i * 95} y="74" width="60" height="46" rx="4" fill={cyan} opacity="0.18" />
           {[0, 1, 2, 3, 4].map((s) => (
-            <circle key={s} cx={128 + i * 95 + s * 11} cy="142" r="4"
+            <polygon
+              key={s}
+              points="0,-5 1.47,-1.55 5,-1.55 2.27,0.59 3.24,4 0,2 -3.24,4 -2.27,0.59 -5,-1.55 -1.47,-1.55"
+              transform={`translate(${128 + i * 95 + s * 11}, 142)`}
               fill={royal}
-              style={{ animation: `dash-pop 1.6s ${s * 0.1 + i * 0.25}s ease-out infinite` }} />
+              style={{ animation: `dash-pop 1.6s ${s * 0.1 + i * 0.25}s ease-out infinite`, transformBox: "fill-box", transformOrigin: "center" }}
+            />
           ))}
           <rect x={120 + i * 95} y="170" width="60" height="6" rx="3" fill="#e5e7eb" />
           <rect x={120 + i * 95} y="184" width="40" height="6" rx="3" fill="#e5e7eb" />
