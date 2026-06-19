@@ -9,6 +9,7 @@ import { Users, ShoppingBag, Boxes, TrendingDown, Gauge } from "lucide-react";
 import labelsImg from "@/assets/financial-system.jpg";
 
 import evaluationImg from "@/assets/evaluation-system.jpg";
+import loopiiSystemImg from "@/assets/loopii-system.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -645,22 +646,34 @@ function Differential() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid md:grid-cols-2 gap-6">
-          <Reveal>
-            <div className="h-full rounded-2xl bg-white border border-[color:var(--border)] p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(0,0,0,0.15)]">
-              <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Outros sistemas</p>
-              <p className="mt-5 text-2xl md:text-3xl font-medium tracking-tight text-pretty leading-snug">
-                A maior parte dos sistemas ajuda você a vender.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <div className="h-full rounded-2xl bg-[color:var(--ink)] text-white p-10 relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
-              <div className="absolute inset-x-0 top-0 h-1 gradient-brand" />
-              <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--cyan-loop)]">Loopii</p>
-              <p className="mt-5 text-2xl md:text-3xl font-medium tracking-tight text-pretty leading-snug">
-                A Loopii ajuda você a proteger sua margem ANTES da venda acontecer.
-              </p>
+        <div className="mt-16 grid md:grid-cols-2 gap-6 items-stretch">
+          <div className="flex flex-col gap-6">
+            <Reveal>
+              <div className="rounded-2xl bg-white border border-[color:var(--border)] p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(0,0,0,0.15)]">
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Outros sistemas</p>
+                <p className="mt-5 text-2xl md:text-3xl font-medium tracking-tight text-pretty leading-snug">
+                  A maior parte dos sistemas ajuda você a vender.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <div className="rounded-2xl bg-[color:var(--ink)] text-white p-10 relative overflow-hidden transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute inset-x-0 top-0 h-1 gradient-brand" />
+                <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--cyan-loop)]">Loopii</p>
+                <p className="mt-5 text-2xl md:text-3xl font-medium tracking-tight text-pretty leading-snug">
+                  A Loopii ajuda você a proteger sua margem ANTES da venda acontecer.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+          <Reveal delay={160}>
+            <div className="h-full rounded-2xl overflow-hidden border border-[color:var(--border)] bg-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.15)]">
+              <img
+                src={loopiiSystemImg}
+                alt="Tela do sistema Loopii"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
           </Reveal>
         </div>
