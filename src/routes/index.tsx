@@ -767,7 +767,7 @@ function Objection() {
           </p>
         </Reveal>
         <Reveal delay={120}>
-          <p className="mt-10 text-xl md:text-3xl font-semibold tracking-tight text-balance leading-snug">
+          <p className="mt-10 text-xl md:text-3xl font-semibold tracking-tight text-balance leading-snug text-gradient-brand">
             É exatamente por isso que você precisa organizar a operação agora.
           </p>
         </Reveal>
