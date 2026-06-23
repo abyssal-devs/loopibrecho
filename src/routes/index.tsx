@@ -120,11 +120,14 @@ function GhostButton({
 /* --------------------------- Lead capture popup --------------------------- */
 
 function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
+    company: "",
     phone: "",
-    volume: "",
+    email: "",
     evaluation: "",
+    revenue: "",
   });
 
   useEffect(() => {
@@ -143,24 +146,60 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
     };
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    if (isOpen) setStep(1);
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const submitToWhatsApp = (data: typeof formData) => {
     const message = `Olá! Tenho interesse na Loopii.
-    
-*Nome:* ${formData.name}
-*Telefone:* ${formData.phone}
-*Peças/mês:* ${formData.volume}
-*Como avalia hoje:* ${formData.evaluation}`;
 
+*Nome:* ${data.name}
+*Empresa:* ${data.company}
+*Telefone:* ${data.phone}
+*Email:* ${data.email}
+*Como avaliam as peças:* ${data.evaluation}
+*Faturamento mensal:* ${data.revenue}`;
     const encoded = encodeURIComponent(message);
     window.open(`https://wa.me/5511999999999?text=${encoded}`, "_blank");
     onClose();
   };
 
+  const handleStep1 = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStep(2);
+  };
+
+  const selectEvaluation = (value: string) => {
+    setFormData((prev) => ({ ...prev, evaluation: value }));
+    setStep(3);
+  };
+
+  const selectRevenue = (value: string) => {
+    const next = { ...formData, revenue: value };
+    setFormData(next);
+    submitToWhatsApp(next);
+  };
+
   const fieldCls =
     "w-full rounded-xl border border-[color:var(--border)] bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--royal)] transition";
+
+  const optionCls =
+    "w-full text-left rounded-xl border border-[color:var(--border)] bg-white px-4 py-3 text-sm font-medium hover:border-[color:var(--royal)] hover:bg-[color:var(--royal)]/5 transition";
+
+  const evaluationOptions = [
+    "Não temos processo definido",
+    "Experiência da equipe",
+    "Planilhas",
+    "Sistema simples",
+  ];
+
+  const revenueOptions = [
+    "Até R$ 5.000",
+    "R$ 5.000 a R$ 10.000",
+    "Mais de R$ 10.000",
+  ];
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -174,50 +213,85 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
 
-        <div className="mb-6">
-          <h3 className="text-2xl font-semibold tracking-tight">Fale com um especialista</h3>
-          <p className="text-muted-foreground mt-2">Preencha os dados abaixo para agendarmos sua demonstração.</p>
-        </div>
+        <div className="mb-4 text-xs font-medium text-muted-foreground">Etapa {step} de 3</div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium">Nome</label>
-            <input required id="name" type="text" placeholder="Seu nome" className={fieldCls}
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="phone" className="text-sm font-medium">Telefone</label>
-            <input required id="phone" type="tel" placeholder="(00) 00000-0000" className={fieldCls}
-              value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="volume" className="text-sm font-medium">Peças que entram por mês</label>
-            <input required id="volume" type="text" placeholder="Ex: 500 peças" className={fieldCls}
-              value={formData.volume}
-              onChange={(e) => setFormData({ ...formData, volume: e.target.value })} />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="eval" className="text-sm font-medium">Como fazem as avaliações hoje?</label>
-            <textarea required id="eval" placeholder="Ex: No olho, planilha, caderninho..."
-              className={`${fieldCls} min-h-[80px] resize-none`}
-              value={formData.evaluation}
-              onChange={(e) => setFormData({ ...formData, evaluation: e.target.value })} />
-          </div>
+        {step === 1 && (
+          <>
+            <div className="mb-6">
+              <h3 className="text-2xl font-semibold tracking-tight">Informações de contato</h3>
+              <p className="text-muted-foreground mt-2">
+                Preencha seus dados de contato para que nossa equipe possa te atender e dar continuidade ao seu atendimento.
+              </p>
+            </div>
+            <form onSubmit={handleStep1} className="space-y-4">
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-sm font-medium">Nome completo</label>
+                <input required id="name" type="text" placeholder="Insira sua resposta." className={fieldCls}
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="company" className="text-sm font-medium">Nome da empresa</label>
+                <input required id="company" type="text" placeholder="Insira sua resposta." className={fieldCls}
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="phone" className="text-sm font-medium">Telefone</label>
+                <input required id="phone" type="tel" placeholder="Insira sua resposta." className={fieldCls}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium">Email</label>
+                <input required id="email" type="email" placeholder="Insira sua resposta." className={fieldCls}
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+              </div>
+              <button
+                type="submit"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--royal)] text-white px-7 py-4 text-sm font-semibold tracking-wide hover:bg-[color:var(--ink)] transition mt-2"
+              >
+                Continuar
+              </button>
+            </form>
+          </>
+        )}
 
-          <button
-            type="submit"
-            className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--royal)] text-white px-7 py-4 text-sm font-semibold tracking-wide hover:bg-[color:var(--ink)] transition mt-2"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            Chamar no WhatsApp
-          </button>
-        </form>
+        {step === 2 && (
+          <>
+            <div className="mb-6">
+              <h3 className="text-2xl font-semibold tracking-tight">Atualmente, como vocês fazem avaliações das peças?</h3>
+            </div>
+            <div className="space-y-3">
+              {evaluationOptions.map((opt) => (
+                <button key={opt} type="button" onClick={() => selectEvaluation(opt)} className={optionCls}>
+                  {opt}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {step === 3 && (
+          <>
+            <div className="mb-6">
+              <h3 className="text-2xl font-semibold tracking-tight">Qual faturamento mensal da sua empresa?</h3>
+            </div>
+            <div className="space-y-3">
+              {revenueOptions.map((opt) => (
+                <button key={opt} type="button" onClick={() => selectRevenue(opt)} className={optionCls}>
+                  {opt}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
 }
+
 
 /* ---------------------------------- Nav ---------------------------------- */
 
