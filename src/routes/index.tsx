@@ -193,8 +193,9 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
     try {
       await submitLeadFn({
         data: {
-          ...data,
           ...utms,
+          ...data,
+
           page_url: window.location.href,
           referrer: document.referrer || undefined,
         },
