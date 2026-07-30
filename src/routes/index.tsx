@@ -250,6 +250,12 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
               </div>
+              <div className="space-y-2">
+                <label htmlFor="instagram" className="text-sm font-medium">Qual o instagram do seu brechó</label>
+                <input id="instagram" type="text" placeholder="@seubrecho" className={fieldCls}
+                  value={formData.instagram}
+                  onChange={(e) => setFormData({ ...formData, instagram: e.target.value })} />
+              </div>
               <button
                 type="submit"
                 className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--royal)] text-white px-7 py-4 text-sm font-semibold tracking-wide hover:bg-[color:var(--ink)] transition mt-2"
