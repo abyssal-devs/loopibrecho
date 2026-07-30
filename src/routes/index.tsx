@@ -121,19 +121,9 @@ function GhostButton({
 
 /* --------------------------- Lead capture popup --------------------------- */
 
-const UTM_KEYS = [
-  "utm_source",
-  "utm_medium",
-  "utm_campaign",
-  "utm_term",
-  "utm_content",
-  "gclid",
-  "fbclid",
-] as const;
-
 const UTM_STORAGE_KEY = "loopii_utms";
 
-type UtmData = Partial<Record<(typeof UTM_KEYS)[number], string>>;
+type UtmData = Record<string, string>;
 
 function captureUtms(): UtmData {
   if (typeof window === "undefined") return {};
@@ -145,10 +135,9 @@ function captureUtms(): UtmData {
   }
   const params = new URLSearchParams(window.location.search);
   const fresh: UtmData = {};
-  for (const key of UTM_KEYS) {
-    const value = params.get(key);
+  params.forEach((value, key) => {
     if (value) fresh[key] = value;
-  }
+  });
   const merged = Object.keys(fresh).length > 0 ? { ...stored, ...fresh } : stored;
   try {
     sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(merged));
@@ -157,6 +146,7 @@ function captureUtms(): UtmData {
   }
   return merged;
 }
+
 
 function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
 
