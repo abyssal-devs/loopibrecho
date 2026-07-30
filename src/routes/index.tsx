@@ -126,6 +126,7 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
     company: "",
     phone: "",
     email: "",
+    instagram: "",
     evaluation: "",
     revenue: "",
   });
@@ -159,6 +160,7 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
 *Empresa:* ${data.company}
 *Telefone:* ${data.phone}
 *Email:* ${data.email}
+*Instagram:* ${data.instagram || "Não informado"}
 *Como avaliam as peças:* ${data.evaluation}
 *Faturamento mensal:* ${data.revenue}`;
     const encoded = encodeURIComponent(message);
@@ -247,6 +249,12 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
                 <input required id="email" type="email" placeholder="Insira sua resposta." className={fieldCls}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="instagram" className="text-sm font-medium">Qual o instagram do seu brechó</label>
+                <input id="instagram" type="text" placeholder="@seubrecho" className={fieldCls}
+                  value={formData.instagram}
+                  onChange={(e) => setFormData({ ...formData, instagram: e.target.value })} />
               </div>
               <button
                 type="submit"
