@@ -160,6 +160,7 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
 *Empresa:* ${data.company}
 *Telefone:* ${data.phone}
 *Email:* ${data.email}
+*Instagram:* ${data.instagram || "Não informado"}
 *Como avaliam as peças:* ${data.evaluation}
 *Faturamento mensal:* ${data.revenue}`;
     const encoded = encodeURIComponent(message);
