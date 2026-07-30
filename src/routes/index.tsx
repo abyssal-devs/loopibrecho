@@ -126,6 +126,7 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
     company: "",
     phone: "",
     email: "",
+    instagram: "",
     evaluation: "",
     revenue: "",
   });
