@@ -26,10 +26,35 @@ const leadSchema = z.object({
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((input) => leadSchema.parse(input))
   .handler(async ({ data }) => {
+    const now = new Date();
+    const tz = "America/Sao_Paulo";
+    const parts = new Intl.DateTimeFormat("pt-BR", {
+      timeZone: tz,
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    }).formatToParts(now);
+    const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "";
+    const date = `${get("day")}/${get("month")}/${get("year")}`;
+    const time = `${get("hour")}:${get("minute")}:${get("second")}`;
+
+    const payload = {
+      ...data,
+      date,
+      time,
+      datetime: `${date} ${time}`,
+      timezone: tz,
+      submitted_at: now.toISOString(),
+    };
+
     const response = await fetch(WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
