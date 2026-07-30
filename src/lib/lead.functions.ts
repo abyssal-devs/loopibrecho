@@ -11,7 +11,17 @@ const leadSchema = z.object({
   instagram: z.string().optional(),
   evaluation: z.string().min(1),
   revenue: z.string().min(1),
+  utm_source: z.string().optional(),
+  utm_medium: z.string().optional(),
+  utm_campaign: z.string().optional(),
+  utm_term: z.string().optional(),
+  utm_content: z.string().optional(),
+  gclid: z.string().optional(),
+  fbclid: z.string().optional(),
+  page_url: z.string().optional(),
+  referrer: z.string().optional(),
 });
+
 
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((input) => leadSchema.parse(input))
