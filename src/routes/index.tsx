@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { submitLead } from "@/lib/lead.functions";
 import logo from "@/assets/loopii-logo.png";
 import heroImg from "@/assets/dashboard-preview.jpg";
 import heroBg from "@/assets/hero-bg.png";
