@@ -192,12 +192,25 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
     if (isOpen) setStep(1);
   }, [isOpen]);
 
+  useEffect(() => {
+    captureUtms();
+  }, []);
+
   if (!isOpen) return null;
 
   const submitToWhatsApp = async (data: typeof formData) => {
+    const utms = captureUtms();
     try {
-      await submitLeadFn({ data });
+      await submitLeadFn({
+        data: {
+          ...data,
+          ...utms,
+          page_url: window.location.href,
+          referrer: document.referrer || undefined,
+        },
+      });
     } catch {
+
       // Keep the user flow even if the webhook fails
     }
 
