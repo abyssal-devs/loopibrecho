@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { submitLead } from "@/lib/lead.functions";
 import logo from "@/assets/loopii-logo.png";
 import heroImg from "@/assets/dashboard-preview.jpg";
 import heroBg from "@/assets/hero-bg.png";
@@ -130,6 +132,7 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
     evaluation: "",
     revenue: "",
   });
+  const submitLeadFn = useServerFn(submitLead);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -153,7 +156,13 @@ function LeadPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
 
   if (!isOpen) return null;
 
-  const submitToWhatsApp = (data: typeof formData) => {
+  const submitToWhatsApp = async (data: typeof formData) => {
+    try {
+      await submitLeadFn({ data });
+    } catch {
+      // Keep the user flow even if the webhook fails
+    }
+
     const message = `Olá! Tenho interesse na Loopii.
 
 *Nome:* ${data.name}
