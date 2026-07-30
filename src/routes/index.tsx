@@ -517,7 +517,7 @@ function FeatureDashboard({ active }: { active: number }) {
 }
 
 
-function Solution() {
+function Solution({ onCTAClick }: { onCTAClick: () => void }) {
   const features = [
     "Padroniza avaliações de peças",
     "Evita preços inconsistentes",
@@ -548,6 +548,11 @@ function Solution() {
               <p className="mt-7 text-lg text-muted-foreground text-pretty leading-relaxed">
                 A Loopii foi criada para brechós e operações second hand que querem crescer com mais controle, organização e margem.
               </p>
+            </Reveal>
+            <Reveal delay={220}>
+              <div className="mt-8">
+                <PrimaryButton onClick={onCTAClick}>{CTA_PRIMARY}</PrimaryButton>
+              </div>
             </Reveal>
             <Reveal delay={240}>
               <div className="mt-12 mockup-frame">
@@ -886,7 +891,7 @@ function LoopiiLanding() {
       <main>
         <Hero onCTAClick={togglePopup} />
         <Pain />
-        <Solution />
+        <Solution onCTAClick={togglePopup} />
         <Differential />
         <StrongBenefit />
         <Objection />
